@@ -1,0 +1,6 @@
+{
+  "name": "Board Game Assistant",
+  "description": "An AI-powered assistant to quickly generate teach notes and answer questions about board game rules from PDF rulebooks or YouTube videos.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
