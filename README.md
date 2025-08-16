@@ -1,5 +1,4 @@
-
-# Built with Google AI Studio app
+Built with Google AI Studio app
 
 ## Run Locally
 
