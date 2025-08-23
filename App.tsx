@@ -10,11 +10,13 @@ import { Chatbot } from './components/Chatbot';
 import { Header } from './components/Header';
 import { SavedGamesSidebar } from './components/SavedGamesSidebar';
 import type { Chat } from '@google/genai';
+import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from './components/icons';
 
 export default function App() {
   // Global state
   const [savedGames, setSavedGames] = useState<SavedGame[]>([]);
   const [activeGameId, setActiveGameId] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
 
   // Current session state (for new or loaded games)
   const [currentTeachNote, setCurrentTeachNote] = useState<TeachNote | null>(null);
@@ -64,6 +66,7 @@ export default function App() {
     
     resetToNew(); // Clear previous state before starting
     setIsGenerating(true);
+    setIsSidebarOpen(true); // Ensure sidebar is open to show the new game later
 
     try {
       let pdfBase64 = '';
@@ -207,13 +210,21 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-900 font-sans flex">
       <SavedGamesSidebar
+        isSidebarOpen={isSidebarOpen}
         savedGames={savedGames}
         activeGameId={activeGameId}
         onLoadGame={handleLoadGame}
         onDeleteGame={handleDeleteGame}
         onNewGame={handleNewGame}
       />
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 relative">
+        <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="absolute top-1/2 -translate-y-1/2 -left-4 z-20 bg-slate-700/80 backdrop-blur-sm border border-slate-600 p-1.5 rounded-full text-slate-300 hover:bg-slate-600 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            aria-label={isSidebarOpen ? "Hide sidebar" : "Show sidebar"}
+        >
+            {isSidebarOpen ? <ChevronDoubleLeftIcon className="w-5 h-5" /> : <ChevronDoubleRightIcon className="w-5 h-5" />}
+        </button>
         <Header />
         <main className="flex-grow p-4 md:p-6 lg:p-8 overflow-y-hidden">
           {view === 'new' && (

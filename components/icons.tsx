@@ -142,3 +142,11 @@ export const CheckIcon: React.FC<{ className?: string }> = ({ className }) => (
 export const XMarkIcon: React.FC<{ className?: string }> = ({ className }) => (
   <Icon className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></Icon>
 );
+
+export const ChevronDoubleLeftIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <Icon className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" /></Icon>
+);
+
+export const ChevronDoubleRightIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <Icon className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M5.25 4.5l7.5 7.5-7.5 7.5m6-15l7.5 7.5-7.5 7.5" /></Icon>
+);
