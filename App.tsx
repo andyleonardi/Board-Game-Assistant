@@ -10,7 +10,6 @@ import { Chatbot } from './components/Chatbot';
 import { Header } from './components/Header';
 import { SavedGamesSidebar } from './components/SavedGamesSidebar';
 import type { Chat } from '@google/genai';
-import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from './components/icons';
 
 export default function App() {
   // Global state
@@ -218,14 +217,10 @@ export default function App() {
         onNewGame={handleNewGame}
       />
       <div className="flex-1 flex flex-col min-w-0 relative">
-        <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="absolute top-1/2 -translate-y-1/2 -left-4 z-20 bg-slate-700/80 backdrop-blur-sm border border-slate-600 p-1.5 rounded-full text-slate-300 hover:bg-slate-600 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            aria-label={isSidebarOpen ? "Hide sidebar" : "Show sidebar"}
-        >
-            {isSidebarOpen ? <ChevronDoubleLeftIcon className="w-5 h-5" /> : <ChevronDoubleRightIcon className="w-5 h-5" />}
-        </button>
-        <Header />
+        <Header 
+          isSidebarOpen={isSidebarOpen}
+          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
         <main className="flex-grow p-4 md:p-6 lg:p-8 overflow-y-hidden">
           {view === 'new' && (
             <div className="max-w-2xl mx-auto">
